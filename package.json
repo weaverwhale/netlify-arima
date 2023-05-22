@@ -1,0 +1,13 @@
+{
+  "name": "tw-netlify-arima",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "yarn i && yarn dev",
+    "dev": "netlify dev",
+    "deploy": "netlify deploy"
+  },
+  "dependencies": {
+    "@netlify/functions": "^1.6.0",
+    "arima": "^0.2.5"
+  }
+}

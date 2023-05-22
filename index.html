@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Netlify Arima</title>
+    <style>
+      pre { display: inline; }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>Netlify Arima</h1>
+      <p>You can post to this endpoint with an object containing a <pre>horizon</pre> (number) and <pre>model</pre> (array)</p>
+      <p><pre>horizon</pre> defaults to <pre>12</pre></p>
+      <p><pre>model</pre> defaults to a random array of 24 numbers generated with <pre>i + Math.random() / 5</pre></p>
+      <p>Example below:</p>
+    </div>
+  </body>
+
+  <script>
+    const app = document.getElementById('app');
+    fetch('/.netlify/functions/arima').then(res => res.json()).then(data => {
+      try {
+        const parsedData = JSON.parse(JSON.stringify(data));
+        console.log(parsedData);
+
+        if(parsedData.horizon) {
+          const div = document.createElement('div');
+          div.innerHTML += `<h2>Horizon:</h2> ${parsedData.horizon}`;
+          app.appendChild(div);
+        }
+
+        if(parsedData.model.length > 0) {
+          app.innerHTML += "<h2>Input Values:</h2>"
+          parsedData.model.forEach((item) => {
+            console.log(item);
+            const div = document.createElement('div');
+            div.innerHTML = item;
+            app.appendChild(div);
+          })
+        }
+
+        if(parsedData.pred.length > 0) {
+          app.innerHTML += "<h2>Predicted Values:</h2>"
+          parsedData.pred.forEach((item) => {
+            console.log(item);
+            const div = document.createElement('div');
+            div.innerHTML = item;
+            app.appendChild(div);
+          })
+        }
+      } catch {}
+    });
+  </script>
+</html>
