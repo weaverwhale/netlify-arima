@@ -1,4 +1,3 @@
-import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import ARIMA from 'arima';
 
 // Synthesize timeseries
@@ -6,7 +5,7 @@ const ts = Array(24)
   .fill(0)
   .map((_, i) => i + Math.random() / 5);
 
-export async function handler(event: any, context: any) {
+export async function handler(event, context) {
   const body = event.body ? JSON.parse(event.body) : {};
   const horizon = body?.horizon ?? 12;
   const model = body?.model ?? ts;
