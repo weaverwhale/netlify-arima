@@ -23,8 +23,6 @@ export async function handler(event: any, context: any) {
   const [pred, errors] = arima.predict(horizon);
   console.log(pred)
 
-  // return in bq format & ensure res is json
-  // https://cloud.google.com/bigquery/docs/remote-functions
   if (!pred) {
     return {
       statusCode: 500,
@@ -34,6 +32,8 @@ export async function handler(event: any, context: any) {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ model, horizon, pred, errors })
+    // return in bq format & ensure res is json
+    // https://cloud.google.com/bigquery/docs/remote-functions
+    body: JSON.stringify({ model, horizon, pred, errors, replies: pred })
   };
 };
