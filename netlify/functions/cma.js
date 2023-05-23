@@ -11,7 +11,7 @@ export async function handler(event, context) {
   const model = body?.model ?? ts;
 
   // Train EMA on model
-  let EMA = ema(l, horizon);
+  let EMA = ema(model, horizon);
 
   // predict horizon
   console.log(EMA);
