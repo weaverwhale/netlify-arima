@@ -27,6 +27,12 @@ export async function handler(event, context) {
     statusCode: 200,
     // return in bq format & ensure res is json
     // https://cloud.google.com/bigquery/docs/remote-functions
-    body: JSON.stringify({ model, horizon, pred: EMA, errors, replies: EMA }),
+    body: JSON.stringify({
+      model,
+      horizon,
+      pred: EMA,
+      errors: [],
+      replies: EMA,
+    }),
   };
 }
