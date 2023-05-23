@@ -1,4 +1,4 @@
-import ARIMA from 'arima';
+import ARIMA from "arima";
 
 // Synthesize timeseries
 const ts = Array(24)
@@ -20,12 +20,12 @@ export async function handler(event, context) {
 
   // predict horizon
   const [pred, errors] = arima.predict(horizon);
-  console.log(pred)
+  console.log(pred);
 
   if (!pred) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ errorMessage: 'Could not predict' })
+      body: JSON.stringify({ errorMessage: "Could not predict" }),
     };
   }
 
@@ -33,6 +33,6 @@ export async function handler(event, context) {
     statusCode: 200,
     // return in bq format & ensure res is json
     // https://cloud.google.com/bigquery/docs/remote-functions
-    body: JSON.stringify({ model, horizon, pred, errors, replies: pred })
+    body: JSON.stringify({ model, horizon, pred, errors, replies: pred }),
   };
-};
+}
