@@ -2,7 +2,7 @@
   "name": "tw-netlify-arima",
   "version": "0.1.0",
   "scripts": {
-    "start": "yarn i && yarn dev",
+    "start": "yarn && yarn dev",
     "dev": "netlify dev",
     "deploy": "netlify deploy"
   },
